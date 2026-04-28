@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: iam
+      POSTGRES_USER: iam
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  iam:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: "host=db user=iam password=secret dbname=iam sslmode=disable"
+      JWT_SECRET: "my_strong_secret_32_chars"
+    depends_on:
+      - db
+    restart: on-failure
+
+volumes:
+  pgdata:
