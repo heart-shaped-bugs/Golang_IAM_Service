@@ -22,7 +22,7 @@
 
    ```bash
    git clone https://github.com/heart-shaped-bugs/Golang_IAM_Service.git
-   cd iam-service
+   cd Golang_IAM_Service
    ```
 
 2. Создай `.env` на основе шаблона:
